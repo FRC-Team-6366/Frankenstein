@@ -86,29 +86,31 @@ public class Shooter {
     Logger.recordOutput("Shooter/ShootDistance", Math.abs(distance));//log distance to speaker
     Logger.recordOutput("Shooter/PassDistance", Math.abs(PassDIstance));//log distance to Pass Target
     Logger.recordOutput("Shooter/shotDistances",  ShotDistance.toString());
+
+     //interpolation map, used to create setpoints on the fly, (Shoot From Anywhere) more data points means more acuracy. If a shot from a certian region is consistantly bad, add a point in that region.
+     shootMap.put(1.25, -35.5);//distance, followed by shot angle //subwoof 
+     shootMap.put(1.84, -21.0);//distance, followed by shot angle //auto line
+     shootMap.put(2.7, -11.5);//distance, followed by shot angle //stage
+     shootMap.put(5.6495, 2.8);//distance, followed by shot angle //wing
+     shootMap.put(3.7338, -4.0);//distance, followed by shot angle //wing
+     shootMap.put(4.8, 2.0);//distance, followed by shot angle //wing
+     shootMap.put(6.0, 4.0);//distance, followed by shot angle //wing
+ 
+     //if shots are bouncing out lower the relevant shot speed
+     speedMap.put(1.25, 2000.0);//distance, followed by shot speed //subwoof 
+     speedMap.put(1.84, 2900.0);//distance, followed by shot speed //auto line
+     speedMap.put(3.054, 4500.0);//distance, followed by shot speed //stage
+     speedMap.put(4.8, 5000.0);//distance, followed by shot angle //wing
+     speedMap.put(5.6495, 5200.0);//distance, followed by shot speed //wing
+     speedMap.put(6.0, 5700.0);//distance, followed by shot angle //wing
+ 
+     PassMap.put(10.2, -30.0);
+ 
+     PassSPedMap.put(10.2, 2700.0);
   }
 
   public void advancedShoot(boolean SWM, boolean Subwoof, boolean AutoLine, boolean Stage, boolean Wing, boolean Amp, boolean intake, boolean fire, double climb, boolean pass, boolean autoShoot, double error) {
-    //interpolation map, used to create setpoints on the fly, (Shoot From Anywhere) more data points means more acuracy. If a shot from a certian region is consistantly bad, add a point in that region.
-    shootMap.put(1.25, -35.5);//distance, followed by shot angle //subwoof 
-    shootMap.put(1.84, -21.0);//distance, followed by shot angle //auto line
-    shootMap.put(2.7, -11.5);//distance, followed by shot angle //stage
-    shootMap.put(5.6495, 2.8);//distance, followed by shot angle //wing
-    shootMap.put(3.7338, -4.0);//distance, followed by shot angle //wing
-    shootMap.put(4.8, 2.0);//distance, followed by shot angle //wing
-    shootMap.put(6.0, 4.0);//distance, followed by shot angle //wing
-
-    //if shots are bouncing out lower the relevant shot speed
-    speedMap.put(1.25, 2000.0);//distance, followed by shot speed //subwoof 
-    speedMap.put(1.84, 2900.0);//distance, followed by shot speed //auto line
-    speedMap.put(3.054, 4500.0);//distance, followed by shot speed //stage
-    speedMap.put(4.8, 5000.0);//distance, followed by shot angle //wing
-    speedMap.put(5.6495, 5200.0);//distance, followed by shot speed //wing
-    speedMap.put(6.0, 5700.0);//distance, followed by shot angle //wing
-
-    PassMap.put(10.2, -30.0);
-
-    PassSPedMap.put(10.2, 2700.0);
+   
 
     Optional<Alliance> ally = DriverStation.getAlliance();
 
