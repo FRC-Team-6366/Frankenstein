@@ -118,16 +118,16 @@ public class Shooter {
 
 
     //new swm stuff
-        
+    double FrameTime = 0;   
     
     time.start();
-    if (time.get() > 0.05) {
+    if (time.get() > 0.02) {
       oldpose = getPose();
-
+      FrameTime = time.get();
       time.reset();
     }
 
-    Translation2d poseDelta = new Translation2d(oldpose.getX() - getPose().getX(), oldpose.getY()-getPose().getY());
+    Translation2d poseDelta = new Translation2d((oldpose.getX() - getPose().getX())/FrameTime, (oldpose.getY()-getPose().getY())/FrameTime);
     //end new swm stuff
 
     
@@ -244,7 +244,7 @@ public class Shooter {
         } else if (!launchMode && DriverStation.isAutonomous()) {
           shooterAngle = -50;
           launchMode = false; //prevents launch permision from being given when not in a shot position
-          ShootSpeed = 2000 + adjDistance * 10;//speed the shooter up when within 5m of speaker.
+          ShootSpeed = 5000;//speed the shooter up when within 5m of speaker.
           autoAim = false;
           speaker = false;
         } else if(inputs.intakeLimit && !launchMode) {
