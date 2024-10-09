@@ -355,6 +355,8 @@ public class Shooter {
 
     if(RobotContainer.io.getDpad() == 0) {//unjam stuff. sequencing is weird. Dpad Up, Down, Up, Hold Down until not is ejected.
       FeedSpeed = -1;
+      sideSpeed = -1;
+      ShootSpeed = -1000;
     } else if (RobotContainer.io.getDpad() == 180) {
       IntakeSpeed = -1;
     }
