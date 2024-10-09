@@ -3,43 +3,53 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 6.75514238339923,
-        "y": 1.0634935910510688
+        "x": 4.249247069922711,
+        "y": 6.293044014659458
       },
       "prevControl": null,
       "nextControl": {
-        "x": 5.152617794144195,
-        "y": 2.032292547282521
+        "x": 4.678870786313,
+        "y": 5.467360934721869
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 3.7613350825636873,
-        "y": 3.0083757061924064
+        "x": 5.638811277622556,
+        "y": 3.977103668493051
       },
       "prevControl": {
-        "x": 4.539676245686085,
-        "y": 2.274091590039201
+        "x": 4.501335592226865,
+        "y": 4.3196389601178895
+      },
+      "nextControl": {
+        "x": 6.820276497695852,
+        "y": 3.621321528357343
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 7.833919953554192,
+        "y": 3.977103668493051
+      },
+      "prevControl": {
+        "x": 6.7665735331470644,
+        "y": 3.6146086577887444
       },
       "nextControl": null,
       "isLocked": false,
       "linkedName": null
     }
   ],
-  "rotationTargets": [
-    {
-      "waypointRelativePos": 0.3,
-      "rotationDegrees": 144.3335639731854,
-      "rotateFast": false
-    }
-  ],
+  "rotationTargets": [],
   "constraintZones": [],
   "eventMarkers": [
     {
       "name": "New Event Marker",
-      "waypointRelativePos": 0.4,
+      "waypointRelativePos": 0,
       "command": {
         "type": "parallel",
         "data": {
@@ -47,7 +57,7 @@
             {
               "type": "named",
               "data": {
-                "name": "AutoAim"
+                "name": "intake"
               }
             }
           ]
@@ -63,13 +73,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 144.3782183718988,
+    "rotation": -152.30052719194504,
     "rotateFast": false
   },
   "reversed": false,
-  "folder": null,
+  "folder": "RushCenterDrop",
   "previewStartingState": {
-    "rotation": 178.63607246839706,
+    "rotation": -170.9433296091457,
     "velocity": 0
   },
   "useDefaultConstraints": true
