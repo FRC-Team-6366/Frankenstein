@@ -80,7 +80,7 @@ public class Shooter {
          shootMap.put(6.0, 4.0);//distance, followed by shot angle //wing
      
          //if shots are bouncing out lower the relevant shot speed
-         speedMap.put(1.25, 2000.0);//distance, followed by shot speed //subwoof 
+         speedMap.put(1.25, 2700.0);//distance, followed by shot speed //subwoof 
          speedMap.put(1.84, 2900.0);//distance, followed by shot speed //auto line
          speedMap.put(3.054, 4500.0);//distance, followed by shot speed //stage
          speedMap.put(4.8, 5000.0);//distance, followed by shot angle //wing
