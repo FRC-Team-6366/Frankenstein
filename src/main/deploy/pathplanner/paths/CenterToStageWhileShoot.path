@@ -28,15 +28,21 @@
       "linkedName": null
     }
   ],
-  "rotationTargets": [],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 0.5,
+      "rotationDegrees": 157.41,
+      "rotateFast": false
+    }
+  ],
   "constraintZones": [
     {
       "name": "New Constraints Zone",
       "minWaypointRelativePos": 0,
-      "maxWaypointRelativePos": 1.0,
+      "maxWaypointRelativePos": 0.6,
       "constraints": {
         "maxVelocity": 1.0,
-        "maxAcceleration": 0.5,
+        "maxAcceleration": 0.45,
         "maxAngularVelocity": 530.0,
         "maxAngularAcceleration": 600.0
       }
