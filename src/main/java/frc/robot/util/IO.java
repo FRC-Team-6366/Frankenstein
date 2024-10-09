@@ -66,20 +66,8 @@ public class IO {
     return op.getRightY();
   }
 
-  public boolean getOPLYDown() {
-    if (op.getLeftY() > 0.5) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-    public boolean getOPLYUp() {
-    if (op.getLeftY() < -0.5) {
-      return true;
-    } else {
-      return false;
-    }
+  public double getOpLeftY() {
+    return op.getLeftY();
   }
 
   public double getDpad() {

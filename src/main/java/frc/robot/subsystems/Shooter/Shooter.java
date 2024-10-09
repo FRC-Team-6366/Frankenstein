@@ -40,6 +40,7 @@ public class Shooter {
   public double shooterAngle;
   public boolean launchMode;
   public boolean autoAim;
+  public double climbShootAngle = -49;
   public double x1, y1, offset, oldX, oldY, distance, PassDIstance;
   public static InterpolatingDoubleTreeMap shootMap = new InterpolatingDoubleTreeMap();
   public static InterpolatingDoubleTreeMap PassMap = new InterpolatingDoubleTreeMap();
@@ -225,7 +226,7 @@ public class Shooter {
           ShootSpeed = 2700;
           autoAim = false;
           speaker = false;
-        } else if (RobotContainer.io.getOPLYDown()) {
+        } else if (RobotContainer.io.getDrY()) {
           shooterAngle = PassMap.get(Math.abs(PassDIstance));
           launchMode = true;
           ShootSpeed = PassSPedMap.get(Math.abs(PassDIstance));
@@ -344,6 +345,10 @@ public class Shooter {
     double climber;
     if (RobotContainer.io.getDrAbutton()) {//release permision, prevents premature movement
       climber = climb;
+      shooterAngle = climbShootAngle + (RobotContainer.io.getOpLeftY() * -1);
+      climbShootAngle = shooterAngle;
+      ShootSpeed = 0;
+
     } else {
       climber = 0;
     }
