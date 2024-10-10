@@ -26,7 +26,7 @@ public class AutoAim extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (RobotContainer.shooter.LaunchPermision() == 1) {
+    if (RobotContainer.shooter.LaunchPermision() == 1 || shotTime.hasElapsed(0.1)) {
       shotTime.start();
       ShotFeed = true;
       RobotContainer.shooter.advancedShoot(true, false, false, false, false, false, false, true, 0, false, false, 0);
