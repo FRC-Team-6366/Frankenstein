@@ -104,9 +104,9 @@ public class ModuleIOTalonFX implements ModuleIO {
     //kV and Ks do nothing for FOCTorque out.
     driveConfig.Slot0.kV = 0.0; //0.12 means apply 12V for a Target Velocity of 100 RPS or 6000 RPM.
     driveConfig.Slot0.kS = 0.0;
-    driveConfig.Slot0.kP = 20.0;
-    driveConfig.Slot0.kI = 0.0;
-    driveConfig.Slot0.kD = 0.0;
+    driveConfig.Slot0.kP = 4.0;
+    driveConfig.Slot0.kI = 0.03;
+    driveConfig.Slot0.kD = 0.1;
     driveConfig.TorqueCurrent.PeakForwardTorqueCurrent = 65;
     driveConfig.TorqueCurrent.PeakReverseTorqueCurrent = 65;
     driveConfig.ClosedLoopRamps.TorqueClosedLoopRampPeriod = 0.13;
