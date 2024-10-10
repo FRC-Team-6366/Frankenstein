@@ -121,13 +121,13 @@ public class Shooter {
     double FrameTime = 0;   
     
     time.start();
-    if (time.get() > 0.02) {
+    if (time.get() > 0.05) {
       oldpose = getPose();
       FrameTime = time.get();
       time.reset();
     }
 
-    Translation2d poseDelta = new Translation2d((oldpose.getX() - getPose().getX())/FrameTime, (oldpose.getY()-getPose().getY())/FrameTime);
+    Translation2d poseDelta = new Translation2d((oldpose.getX() - getPose().getX()), (oldpose.getY()-getPose().getY()));
     //end new swm stuff
 
     
@@ -375,7 +375,7 @@ public class Shooter {
   public double LaunchPermision() {//launch permision, identifies, when shot parameters are reached. (returns a number, as it was originaly inteded to serve as a controller vibration input.)
     if (shooterAngle < getAnlge().plus(new Rotation2d(Units.degreesToRadians(2))).getDegrees() && shooterAngle > getAnlge().minus(new Rotation2d(Units.degreesToRadians(2))).getDegrees() && ShootSpeed < getAvrgShootSpd() + 40 && ShootSpeed > getAvrgShootSpd() - 40 && launchMode && autoAim && DriverStation.isTeleop()) {
       return 1;
-    }else if (shooterAngle < getAnlge().plus(new Rotation2d(Units.degreesToRadians(2))).getDegrees() && shooterAngle > getAnlge().minus(new Rotation2d(Units.degreesToRadians(2))).getDegrees() && ShootSpeed < getAvrgShootSpd() + 100 && ShootSpeed > getAvrgShootSpd() - 100 && launchMode) {
+    }else if (shooterAngle < getAnlge().plus(new Rotation2d(Units.degreesToRadians(2))).getDegrees() && shooterAngle > getAnlge().minus(new Rotation2d(Units.degreesToRadians(2))).getDegrees() && ShootSpeed < getAvrgShootSpd() + 800 && ShootSpeed > getAvrgShootSpd() - 800 && launchMode) {
       return 1;
     } else {
       return 0;
