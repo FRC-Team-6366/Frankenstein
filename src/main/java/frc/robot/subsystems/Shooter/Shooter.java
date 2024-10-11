@@ -69,6 +69,27 @@ public class Shooter {
 
     SmartDashboard.putNumber("SetAngle", -50);
     SmartDashboard.putNumber("SetSpeed", 0);
+
+         //interpolation map, used to create setpoints on the fly, (Shoot From Anywhere) more data points means more acuracy. If a shot from a certian region is consistantly bad, add a point in that region.
+         shootMap.put(1.25, -35.5);//distance, followed by shot angle //subwoof 
+         shootMap.put(1.84, -21.0);//distance, followed by shot angle //auto line
+         shootMap.put(2.7, -11.5);//distance, followed by shot angle //stage
+         shootMap.put(5.6495, 2.8);//distance, followed by shot angle //wing
+         shootMap.put(3.7338, -4.0);//distance, followed by shot angle //wing
+         shootMap.put(4.8, 2.0);//distance, followed by shot angle //wing
+         shootMap.put(6.0, 4.0);//distance, followed by shot angle //wing
+     
+         //if shots are bouncing out lower the relevant shot speed
+         speedMap.put(1.25, 2700.0);//distance, followed by shot speed //subwoof 
+         speedMap.put(1.84, 2900.0);//distance, followed by shot speed //auto line
+         speedMap.put(3.054, 4500.0);//distance, followed by shot speed //stage
+         speedMap.put(4.8, 5000.0);//distance, followed by shot angle //wing
+         speedMap.put(5.6495, 5200.0);//distance, followed by shot speed //wing
+         speedMap.put(6.0, 5700.0);//distance, followed by shot angle //wing
+     
+         PassMap.put(10.2, -30.0);
+     
+         PassSPedMap.put(10.2, 2700.0);
   }
 
   public void ShooterPeriodic() {
@@ -86,44 +107,27 @@ public class Shooter {
     Logger.recordOutput("Shooter/ShootDistance", Math.abs(distance));//log distance to speaker
     Logger.recordOutput("Shooter/PassDistance", Math.abs(PassDIstance));//log distance to Pass Target
     Logger.recordOutput("Shooter/shotDistances",  ShotDistance.toString());
+
+
   }
 
   public void advancedShoot(boolean SWM, boolean Subwoof, boolean AutoLine, boolean Stage, boolean Wing, boolean Amp, boolean intake, boolean fire, double climb, boolean pass, boolean autoShoot, double error) {
-    //interpolation map, used to create setpoints on the fly, (Shoot From Anywhere) more data points means more acuracy. If a shot from a certian region is consistantly bad, add a point in that region.
-    shootMap.put(1.25, -35.5);//distance, followed by shot angle //subwoof 
-    shootMap.put(1.84, -21.0);//distance, followed by shot angle //auto line
-    shootMap.put(2.7, -11.5);//distance, followed by shot angle //stage
-    shootMap.put(5.6495, 2.8);//distance, followed by shot angle //wing
-    shootMap.put(3.7338, -4.0);//distance, followed by shot angle //wing
-    shootMap.put(4.8, 2.0);//distance, followed by shot angle //wing
-    shootMap.put(6.0, 4.0);//distance, followed by shot angle //wing
-
-    //if shots are bouncing out lower the relevant shot speed
-    speedMap.put(1.25, 2000.0);//distance, followed by shot speed //subwoof 
-    speedMap.put(1.84, 2900.0);//distance, followed by shot speed //auto line
-    speedMap.put(3.054, 4500.0);//distance, followed by shot speed //stage
-    speedMap.put(4.8, 5000.0);//distance, followed by shot angle //wing
-    speedMap.put(5.6495, 5200.0);//distance, followed by shot speed //wing
-    speedMap.put(6.0, 5700.0);//distance, followed by shot angle //wing
-
-    PassMap.put(10.2, -30.0);
-
-    PassSPedMap.put(10.2, 2700.0);
+   
 
     Optional<Alliance> ally = DriverStation.getAlliance();
 
 
     //new swm stuff
-        
+    double FrameTime = 0;   
     
     time.start();
     if (time.get() > 0.05) {
       oldpose = getPose();
-
+      FrameTime = time.get();
       time.reset();
     }
 
-    Translation2d poseDelta = new Translation2d(oldpose.getX() - getPose().getX(), oldpose.getY()-getPose().getY());
+    Translation2d poseDelta = new Translation2d((oldpose.getX() - getPose().getX()), (oldpose.getY()-getPose().getY()));
     //end new swm stuff
 
     
@@ -216,7 +220,7 @@ public class Shooter {
         } else if ((intake || RobotContainer.io.getDrRTrigger()) && !Subwoof && !AutoLine && !Stage && !Wing && !Amp && !SWM) {
           shooterAngle = -50;
           launchMode = false;
-          ShootSpeed = 0.0;
+          ShootSpeed = 1000;
           autoAim = false;
           speaker = false;
         } else if (pass) {
@@ -240,7 +244,7 @@ public class Shooter {
         } else if (!launchMode && DriverStation.isAutonomous()) {
           shooterAngle = -50;
           launchMode = false; //prevents launch permision from being given when not in a shot position
-          ShootSpeed = 2000 + adjDistance * 10;//speed the shooter up when within 5m of speaker.
+          ShootSpeed = 5000;//speed the shooter up when within 5m of speaker.
           autoAim = false;
           speaker = false;
         } else if(inputs.intakeLimit && !launchMode) {
@@ -371,7 +375,7 @@ public class Shooter {
   public double LaunchPermision() {//launch permision, identifies, when shot parameters are reached. (returns a number, as it was originaly inteded to serve as a controller vibration input.)
     if (shooterAngle < getAnlge().plus(new Rotation2d(Units.degreesToRadians(2))).getDegrees() && shooterAngle > getAnlge().minus(new Rotation2d(Units.degreesToRadians(2))).getDegrees() && ShootSpeed < getAvrgShootSpd() + 40 && ShootSpeed > getAvrgShootSpd() - 40 && launchMode && autoAim && DriverStation.isTeleop()) {
       return 1;
-    }else if (shooterAngle < getAnlge().plus(new Rotation2d(Units.degreesToRadians(2))).getDegrees() && shooterAngle > getAnlge().minus(new Rotation2d(Units.degreesToRadians(2))).getDegrees() && ShootSpeed < getAvrgShootSpd() + 40 && ShootSpeed > getAvrgShootSpd() - 40 && launchMode) {
+    }else if (shooterAngle < getAnlge().plus(new Rotation2d(Units.degreesToRadians(2))).getDegrees() && shooterAngle > getAnlge().minus(new Rotation2d(Units.degreesToRadians(2))).getDegrees() && ShootSpeed < getAvrgShootSpd() + 800 && ShootSpeed > getAvrgShootSpd() - 800 && launchMode) {
       return 1;
     } else {
       return 0;

@@ -3,39 +3,45 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 2.3372408819951813,
-        "y": 4.2147908267194
+        "x": 7.702088731595387,
+        "y": 6.0
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.441414260288271,
-        "y": 4.699418343380516
+        "x": 5.8536231358177,
+        "y": 6.957618200950688
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 2.1022699648261556,
-        "y": 5.551187918118234
+        "x": 4.0881381762763525,
+        "y": 5.7828658514459885
       },
       "prevControl": {
-        "x": 1.6910708597803608,
-        "y": 5.53650223579517
+        "x": 4.739286621430385,
+        "y": 6.158786603287493
       },
       "nextControl": null,
       "isLocked": false,
       "linkedName": null
     }
   ],
-  "rotationTargets": [],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 0.3,
+      "rotationDegrees": -173.1744020624716,
+      "rotateFast": false
+    }
+  ],
   "constraintZones": [
     {
       "name": "New Constraints Zone",
-      "minWaypointRelativePos": 0,
+      "minWaypointRelativePos": 0.45,
       "maxWaypointRelativePos": 1.0,
       "constraints": {
-        "maxVelocity": 1.05,
+        "maxVelocity": 1.5,
         "maxAcceleration": 4.0,
         "maxAngularVelocity": 530.0,
         "maxAngularAcceleration": 600.0
@@ -45,7 +51,7 @@
   "eventMarkers": [
     {
       "name": "New Event Marker",
-      "waypointRelativePos": 0,
+      "waypointRelativePos": 0.45,
       "command": {
         "type": "parallel",
         "data": {
@@ -69,13 +75,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 179.1815445383114,
+    "rotation": -174.28522319426858,
     "rotateFast": false
   },
   "reversed": false,
-  "folder": "5.5Piece",
+  "folder": "RushCenterDrop",
   "previewStartingState": {
-    "rotation": 143.91110647442278,
+    "rotation": 163.18737376457574,
     "velocity": 0
   },
   "useDefaultConstraints": true

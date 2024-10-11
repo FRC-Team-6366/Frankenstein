@@ -3,25 +3,41 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 2.3372408819951813,
-        "y": 4.2147908267194
+        "x": 4.249247069922711,
+        "y": 6.293044014659458
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.441414260288271,
-        "y": 4.699418343380516
+        "x": 4.678870786313,
+        "y": 5.467360934721869
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 2.1022699648261556,
-        "y": 5.551187918118234
+        "x": 5.638811277622556,
+        "y": 3.977103668493051
       },
       "prevControl": {
-        "x": 1.6910708597803608,
-        "y": 5.53650223579517
+        "x": 4.501335592226865,
+        "y": 4.3196389601178895
+      },
+      "nextControl": {
+        "x": 6.820276497695852,
+        "y": 3.621321528357343
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 7.833919953554192,
+        "y": 3.977103668493051
+      },
+      "prevControl": {
+        "x": 6.7665735331470644,
+        "y": 3.6146086577887444
       },
       "nextControl": null,
       "isLocked": false,
@@ -29,19 +45,7 @@
     }
   ],
   "rotationTargets": [],
-  "constraintZones": [
-    {
-      "name": "New Constraints Zone",
-      "minWaypointRelativePos": 0,
-      "maxWaypointRelativePos": 1.0,
-      "constraints": {
-        "maxVelocity": 1.05,
-        "maxAcceleration": 4.0,
-        "maxAngularVelocity": 530.0,
-        "maxAngularAcceleration": 600.0
-      }
-    }
-  ],
+  "constraintZones": [],
   "eventMarkers": [
     {
       "name": "New Event Marker",
@@ -53,7 +57,7 @@
             {
               "type": "named",
               "data": {
-                "name": "AutoAim"
+                "name": "intake"
               }
             }
           ]
@@ -69,13 +73,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 179.1815445383114,
+    "rotation": -152.30052719194504,
     "rotateFast": false
   },
   "reversed": false,
-  "folder": "5.5Piece",
+  "folder": "RushCenterDrop",
   "previewStartingState": {
-    "rotation": 143.91110647442278,
+    "rotation": -170.9433296091457,
     "velocity": 0
   },
   "useDefaultConstraints": true
