@@ -10,7 +10,7 @@ import frc.robot.RobotContainer;
 
 public class AutoAim extends Command {
   public Timer shotTime = new Timer();
-  private boolean ShotFeed = false;
+  private boolean ShotFeed;
   /** Creates a new AutoLineShot. */
   public AutoAim() {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -21,21 +21,25 @@ public class AutoAim extends Command {
   public void initialize() {
     shotTime.stop();
     shotTime.reset();
-    ShotFeed = false;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (RobotContainer.shooter.LaunchPermision() == 1) {
+    if (RobotContainer.shooter.LaunchPermision() == 1 || shotTime.hasElapsed(0.1)) {
       shotTime.start();
       ShotFeed = true;
+      RobotContainer.shooter.advancedShoot(true, false, false, false, false, false, false, true, 0, false, false, 0);
+    } else {
       RobotContainer.shooter.advancedShoot(true, false, false, false, false, false, false, false, 0, false, false, 0);
     }
 
+
     if (ShotFeed) {
-      RobotContainer.shooter.advancedShoot(true, false, false, false, false, false, false, true, 0, false, false, 0);
-    } else {}
+      
+    } else {
+
+    }
   }
 
   // Called once the command ends or is interrupted.
@@ -47,7 +51,7 @@ public class AutoAim extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (shotTime.get() > 0.6) {
+    if (shotTime.get() > 1.0) {
       return true;
     } else {
       return false;
